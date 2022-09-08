@@ -1,0 +1,52 @@
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <a routerLink="/dashboard"><h1 class="example-app-name">DASHBOARD FOR {{userRole | uppercase}} </h1></a>
+      <span class="example-spacer"></span>
+      <div class="profile-container">
+        <button (click)="goToProfile()" mat-icon-button class="example-icon">
+          <mat-icon class="icon-display">account_circle</mat-icon>
+        </button>
+       <p *ngIf="innerWidth > 500">{{userName}}</p> 
+      </div>
+      
+    </mat-toolbar>
+  
+    <mat-sidenav-container autosize class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+        <a mat-list-item (click)="toggleMenu()">
+          <mat-icon mat-list-icon>chat</mat-icon>CHAT
+          <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+          <mat-icon *ngIf="showMenu">expand_more</mat-icon>
+        </a>
+        <mat-nav-list class="sidenav-submenu" *ngIf="showMenu">
+          <a mat-list-item > <mat-icon mat-list-icon>forum</mat-icon>GLOBAL CHAT</a>
+          <a mat-list-item ><mat-icon mat-list-icon>diversity_3</mat-icon> ROOMS</a>
+        </mat-nav-list>
+        <ng-container *ngIf="userRole === 'admin'">  <!-- HERE WE CONTROL IF USER CAN SEE MENU IF HE'S ADMIN ROLE -->
+            <button routerLink="users" mat-list-item> <mat-icon mat-list-icon>group</mat-icon>USERS</button>
+            <button routerLink="groups" mat-list-item> <mat-icon mat-list-icon>groups</mat-icon>GROUPS</button>
+        </ng-container>
+        <button mat-list-item> <mat-icon mat-list-icon>settings</mat-icon>CONFIGURATION</button>
+        <div style="width: 100%;" [ngClass]='appropriateClass'> 
+          <button class="logout-button" (click)="logout()" mat-list-item> <mat-icon mat-list-icon>logout</mat-icon>LOG OUT</button>
+        </div>
+      </mat-nav-list>
+      </mat-sidenav>
+  
+       <mat-sidenav-content> <!--dashboard -->
+        <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+        <ng-template #iconTemplate>
+         <mat-icon>chevron_right</mat-icon>
+        </ng-template>
+         <router-outlet></router-outlet> <!--to show our users, home, profile pages inside our dashboard -->
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+
+  

@@ -1,0 +1,46 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  a{
+    cursor: pointer;
+  }
+
+  a:hover {
+    opacity: 50%;
+  }
+
+
+  .spinner-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .table-container {
+    width: 100%; 
+    overflow-x: scroll;
+  }
+
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 15px 25px 15px 0;
+  }
+  
+
+
+  @media only screen and (min-width: 468px) {
+    /* For desktop: */
+    .table-container {
+        width: 100%;
+    }
+  }

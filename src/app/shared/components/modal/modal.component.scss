@@ -1,0 +1,15 @@
+* {
+    width: 100%;
+    
+}
+h1 {
+    word-break: break-all;
+}
+
+
+@media only screen and (min-width: 468px) {
+    /* For desktop: */
+    * {
+        min-width: 350px;
+    }
+  }

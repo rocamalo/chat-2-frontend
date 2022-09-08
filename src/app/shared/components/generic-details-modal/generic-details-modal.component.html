@@ -1,0 +1,10 @@
+<!-- Generic Modal For Details-->
+<ng-container *ngIf="true">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+<p *ngFor="let key of data.element | keysValue">{{key}}: {{data.element[key]}}</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>
+</ng-container>

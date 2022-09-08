@@ -1,0 +1,73 @@
+
+
+<div class="container">
+    <mat-card>
+      <h2>REGISTER</h2>
+      <form [formGroup]="myForm" class="example-form" (ngSubmit)="register()">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher"
+                   >
+            <mat-error *ngIf="myForm.get('name')?.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
+                 placeholder="Ex. pat@example.com">
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          <mat-error *ngIf="myForm.get('email')?.hasError('email') && !myForm.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="myForm.get('email')?.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher"
+                 >
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          <mat-error *ngIf="myForm.get('password')?.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="myForm.get('password')?.hasError('minlength')">
+            Password minimun length <strong>is 6</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Confirm your password</mat-label>
+            <input type="password" matInput formControlName="password2"  [errorStateMatcher]="matcher"
+                   >
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+            <mat-error *ngIf="myForm.get('password2')?.hasError('required')">
+              Password2 is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="myForm.get('password2')?.hasError('minlength')">
+                Password minimun length <strong>is 6</strong>
+              </mat-error>
+            <mat-error *ngIf="myForm.hasError('notEqual')">
+                Passwords don't  <strong>match</strong>
+              </mat-error>
+          </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="myForm.invalid">SUBMIT</button>
+      </form>
+      <a routerLink="/auth/login">Already have an account?</a>
+    </mat-card>
+    
+    
+  </div>
+  
+  <div *ngIf="errorMessage$ | async as errorMessage">
+    {{errorMessage}}
+  </div>
+  
+  
+  <swal
+    #errorLogin
+    title='Error at login'
+    icon="error"
+    >
+    </swal>

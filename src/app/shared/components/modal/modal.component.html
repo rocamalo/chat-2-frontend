@@ -1,0 +1,30 @@
+<!-- Details Modal -->
+<ng-container *ngIf="details; else form">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <ul>
+    <li>
+        <span *ngIf="data.name"></span> {{data.name}}
+      </li>
+    <li>
+      <span *ngIf="data.email"></span> {{data.email}}
+    </li>
+    <li>
+      <span *ngIf="data.role"></span> {{data.role}}
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>
+</ng-container>
+
+<!-- Adding or Editing Modal -->
+<ng-template #form>
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <app-form [userData]="data"></app-form> 
+</ng-template>
+
+
+
+

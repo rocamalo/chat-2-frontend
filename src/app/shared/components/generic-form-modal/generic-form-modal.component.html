@@ -1,0 +1,40 @@
+<!-- Generic Modal For EDIT/ADD-->
+<ng-container *ngIf="true">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+<form [formGroup]="myForm">
+    <ng-container *ngIf="this.data.method === 'update'">
+        <div *ngFor="let key of depuratedObject | keys">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{key}}</mat-label>
+                <input type="text" matInput [formControlName]="key" 
+                       >
+                <mat-error *ngIf="myForm.get(key)?.hasError('required')">
+                  {{key | titlecase}} is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.data.method === 'add'">
+        <div *ngFor="let field of this.data.fields">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{field}}</mat-label>
+                <input type="text" matInput [formControlName]="field" 
+                       >
+                <mat-error *ngIf="myForm.get(field)?.hasError('required')">
+                  {{field | titlecase}} is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+    
+    
+</form>
+</div>
+<div mat-dialog-actions>
+    <div class="buttons-container">
+        <button type="button" [swal]="{ title: 'Are you sure to save data?',  text:'This cannot be undone', icon: 'warning', showCancelButton: true }" (confirm)="submitData()" mat-raised-button color="primary" [disabled]="myForm.invalid">SUBMIT</button>
+        <button type="button" (click)="onCancel()" class="cancel-button" mat-raised-button color="warn">CANCEL</button>
+    </div>
+</div>
+</ng-container>

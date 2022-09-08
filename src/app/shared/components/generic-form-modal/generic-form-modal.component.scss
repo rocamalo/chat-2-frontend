@@ -1,0 +1,14 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.buttons-container {
+    display: flex;
+    margin-top: 15px;
+}
+.cancel-button {
+    margin-left: 5px;
+}
+
